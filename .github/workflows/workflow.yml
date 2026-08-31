@@ -2,7 +2,7 @@ name: Fluxo CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feat/melhorias-esteira" ]
   pull_request:
     branches: [ "main", "develop" ]
 
@@ -58,3 +58,4 @@ jobs:
         with:
           reporter: github-pr-review
           level: warning
+          checkstyle_config: config/checkstyle/checkstyle.xml
