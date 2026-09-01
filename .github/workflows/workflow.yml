@@ -58,7 +58,7 @@ jobs:
         with:
           reporter: github-pr-check
           level: warning
-
+          checkstyle_config: config/checkstyle/checkstyle.xml
   Metrica:
     needs: Build
     name: Metricas
