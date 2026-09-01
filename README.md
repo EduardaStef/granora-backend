@@ -39,3 +39,4 @@ A API usa autenticação via token JWT:
 3. Envie esse token no header `Authorization: Bearer <token>` nas demais requisições.
 
 ## Métricas
+<img alt="" src="https://github.com/EduardaStef/granora-backend/blob/feat/melhoria-esteira/github-metrics.svg"></img>
