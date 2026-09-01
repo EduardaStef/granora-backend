@@ -1,15 +1,15 @@
 package com.devduda.granora.model;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
-import java.util.UUID;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @Table(name = "genero")
 public class Genero {
 
@@ -31,21 +31,5 @@ public class Genero {
         setTitulo(titulo);
         setDescricao(descricao);
         setUsuario(usuario);
-    }
-
-    public void setTitulo(String titulo) {
-        if (Objects.nonNull(titulo) && !titulo.isEmpty()) {
-            this.titulo = titulo;
-        } else {
-            throw new RuntimeException("Título inválido");
-        }
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 }

@@ -2,14 +2,14 @@ package com.devduda.granora.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "movimentacao")
 public class Movimentacao {
@@ -44,7 +44,6 @@ public class Movimentacao {
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Parcelamento parcelamento;
 
-
     public Movimentacao(String titulo, String descricao, Date data, Double valor, boolean isSaida, Genero genero, boolean isPago, boolean isCredito, Integer qtdParcela, Double vlrParcela, Parcelamento parcelamento) {
         setTitulo(titulo);
         setDescricao(descricao);
@@ -54,45 +53,5 @@ public class Movimentacao {
         setGenero(genero);
         setPago(isPago);
         setParcelamento(parcelamento);
-    }
-
-    public void setTitulo(String titulo) {
-        if(Objects.nonNull(titulo) && !titulo.isEmpty()) {
-            this.titulo = titulo;
-        } else {
-            throw new RuntimeException("Título inválido");
-        }
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public void setSaida(boolean saida) {
-        isSaida = saida;
-    }
-
-    public void setGenero(Genero genero) {
-        this.genero = genero;
-    }
-
-    public void setPago(boolean pago) {
-        isPago = pago;
-    }
-
-    public void setParcelamento(Parcelamento parcelamento) {
-        this.parcelamento = parcelamento;
-    }
-
-    public void setValor(Double valor) {
-        if((Objects.nonNull(valor)) && valor > 0.0) {
-            this.valor = valor;
-        } else {
-            throw new RuntimeException("Valor inválido");
-        }
     }
 }
