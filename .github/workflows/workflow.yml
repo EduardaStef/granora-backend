@@ -2,7 +2,7 @@ name: Fluxo CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feat/melhoria-esteira" ]
   pull_request:
     branches: [ "main", "develop" ]
 
@@ -51,10 +51,21 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     name: Checkstyle Review
-    permissions: {pull-requests: write, contents: read}
+    permissions: {checks: write, contents: read}
     steps:
       - uses: actions/checkout@v6
       - uses: dbelyaev/action-checkstyle@v3
         with:
-          reporter: github-pr-review
+          reporter: github-pr-check
           level: warning
+
+  Metrica:
+    needs: Build
+    name: Metricas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          template: repository
+          user: EduardaStef
+          repo: granora-backend
