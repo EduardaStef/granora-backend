@@ -69,3 +69,7 @@ jobs:
           template: repository
           user: EduardaStef
           repo: granora-backend
+          token: ${{ secrets.METRICS_TOKEN_WITH_SCOPES }}
+          plugin_lines: yes
+          plugin_followup: yes
+          plugin_projects: yes
