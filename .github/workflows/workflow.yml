@@ -66,18 +66,3 @@ jobs:
           reporter: github-pr-check
           level: warning
           checkstyle_config: config/checkstyle/checkstyle.xml
-
-  Metrica:
-    needs: Build
-    name: Metricas
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          template: repository
-          user: EduardaStef
-          repo: granora-backend
-          token: ${{ secrets.METRICS_TOKEN_WITH_SCOPES }}
-          plugin_lines: yes
-          plugin_followup: yes
-          plugin_projects: yes
