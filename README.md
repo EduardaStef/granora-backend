@@ -8,6 +8,7 @@ API REST para controle de finanças pessoais simples, desenvolvida com Java e Sp
 
 - Java 21
 - Spring Boot 4
+- Spring Security + JWT (Auth0 java-jwt)
 - Spring Data JPA
 - PostgreSQL
 - Lombok
@@ -23,11 +24,19 @@ API REST para controle de finanças pessoais simples, desenvolvida com Java e Sp
 ### Configuração
 
 1. Crie um banco chamado `granora` no PostgreSQL.
-2. Configure as variáveis de ambiente `DB_USUARIO`, `DB_SENHA` e `DB_URL` (veja `application.properties`).
+2. Configure as variáveis de ambiente `DB_USUARIO`, `DB_SENHA`, `DB_HOST`, `DB_PORTA`, `DB_NOME` e `JWT_SECRET` (veja `application.properties`).
 3. Rode a aplicação:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-A API sobe em `http://localhost:8080`.
+### Autenticação
+A API usa autenticação via token JWT:
+
+1. Crie um usuário em POST /usuario.
+2. Faça login em POST /login enviando apelido e senha — a resposta traz o token.
+3. Envie esse token no header `Authorization: Bearer <token>` nas demais requisições.
+
+## Métricas
+<img alt="" src="https://github.com/EduardaStef/granora-backend/blob/feat/melhoria-esteira/github-metrics.svg"></img>

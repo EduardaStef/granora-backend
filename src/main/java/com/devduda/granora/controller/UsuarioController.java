@@ -9,8 +9,8 @@ import com.devduda.granora.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import java.time.LocalDateTime;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,7 +32,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login (@RequestBody AutenticacaoDTO auth) {
+    public ResponseEntity login(@RequestBody AutenticacaoDTO auth) {
         UsernamePasswordAuthenticationToken tokenUsuario = new UsernamePasswordAuthenticationToken(auth.getApelido(), auth.getSenha());
         var autorizacao = this.authenticationManager.authenticate(tokenUsuario);
 
