@@ -2,7 +2,7 @@ name: Fluxo CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feat/melhoria-esteira" ]
   pull_request:
     branches: [ "main", "develop" ]
 
@@ -38,12 +38,12 @@ jobs:
       - name: Build com Maven
         run: mvn --batch-mode package --file pom.xml
         env:
-               DB_HOST: localhost
-               DB_PORTA: 5432
-               DB_NOME: ${{ secrets.DB_NOME }}
-               DB_USUARIO: ${{ secrets.DB_USUARIO }}
-               DB_SENHA: ${{ secrets.DB_SENHA }}
-               JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DB_HOST: localhost
+          DB_PORTA: 5432
+          DB_NOME: ${{ secrets.DB_NOME }}
+          DB_USUARIO: ${{ secrets.DB_USUARIO }}
+          DB_SENHA: ${{ secrets.DB_SENHA }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
       - name: Atualiza grafico de dependencias
         uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
 
@@ -51,10 +51,18 @@ jobs:
     needs: Build
     runs-on: ubuntu-latest
     name: Checkstyle Review
-    permissions: {pull-requests: write, contents: read}
+    permissions: { checks: write, contents: read }
     steps:
       - uses: actions/checkout@v6
-      - uses: dbelyaev/action-checkstyle@v3
+
+      - name: Unimport
+        uses: hakancelikdev/unimport@1.4.0
         with:
-          reporter: github-pr-review
+          extra_args: "--check --gitignore --ignore-init"
+
+      - name: Checkstyle
+        uses: dbelyaev/action-checkstyle@v3
+        with:
+          reporter: github-pr-check
           level: warning
+          checkstyle_config: config/checkstyle/checkstyle.xml
