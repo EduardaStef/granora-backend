@@ -21,6 +21,7 @@ jobs:
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
         - name: Commit and Push Changes
           run: |
+            git pull
             git add -A
             if [[ `git status --porcelain` ]]; then
               git commit -m "Adicionando automaticamente o link da issue ao TODOs"
