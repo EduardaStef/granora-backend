@@ -68,6 +68,7 @@ jobs:
           checkstyle_config: config/checkstyle/checkstyle.xml
 
   Issue:
+    if: github.event_name == 'pull_request'
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
@@ -75,6 +76,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: "actions/checkout@v6"
+        with:
+          ref: ${{ github.head_ref }}
       - name: "Issues"
         uses: "alstr/todo-to-issue-action@v5"
         with:
@@ -89,7 +92,7 @@ jobs:
           git add -A
           if [[ `git status --porcelain` ]]; then
             git commit -m "Adicionando automaticamente o link da issue ao TODOs"
-            git push origin HEAD:${{ github.ref_name }}
+            git push origin HEAD:${{ github.head_ref }}
           else
             echo "No changes to commit"
           fi
