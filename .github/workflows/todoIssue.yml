@@ -1,6 +1,8 @@
 name: Todo para Issue
 
-on: [ "push" ]
+on:
+  push:
+    branches: [ "main", "develop" ]
 
 jobs:
     build:
