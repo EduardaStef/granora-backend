@@ -1,8 +1,10 @@
 # Granora 📝 💰
-
 API REST para controle de finanças pessoais simples, desenvolvida com Java e Spring Boot.
 
 > 🚧 Projeto em desenvolvimento — funcionalidades sendo adicionadas aos poucos.
+
+### Status
+[![Fluxo CI](https://github.com/EduardaStef/granora-backend/actions/workflows/workflow.yml/badge.svg)](https://github.com/EduardaStef/granora-backend/actions/workflows/workflow.yml)
 
 ## Tecnologias
 
